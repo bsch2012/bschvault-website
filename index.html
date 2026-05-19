@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSCH.VAULT - Visual Consultant & AI Creative Director</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --amber: #FFB300;
+      --teal: #008B7A;
+      --bronze: #CD7F32;
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #181818;
+      --border: rgba(255,179,0,0.12);
+      --text: #e8e8e8;
+      --muted: #555;
+      --font-logo: 'Press Start 2P', monospace;
+      --font-char: 'Orbitron', monospace;
+      --font-body: 'VT323', monospace;
+      --font-badge: 'Share Tech Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px);
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.95);
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+
+    .header-logo {
+      font-family: var(--font-logo);
+      font-size: 12px;
+      color: var(--amber);
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(255,179,0,0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-badge);
+      font-size: 11px;
+      color: var(--text);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: var(--amber);
+      border-bottom-color: var(--amber);
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 60px 0;
+      margin-bottom: 80px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .hero-title {
+      font-family: var(--font-char);
+      font-size: 48px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-badge);
+      font-size: 14px;
+      color: var(--amber);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      text-shadow: 0 0 12px rgba(255,179,0,0.3);
+    }
+
+    .hero-desc {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--amber);
+      color: var(--bg);
+      padding: 12px 32px;
+      font-family: var(--font-badge);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(255,179,0,0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(255,179,0,0.6);
+    }
+
+    /* SERVICES SECTION */
+    .section {
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      font-family: var(--font-logo);
+      font-size: 16px;
+      color: var(--amber);
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+      text-align: center;
+      text-shadow: 0 0 12px rgba(255,179,0,0.3);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 28px;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(0,139,122,0.5);
+      background: var(--surface2);
+      box-shadow: 0 0 20px rgba(0,139,122,0.1);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: var(--teal);
+    }
+
+    .service-name {
+      font-family: var(--font-char);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .service-desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* CREATIVE PARTNERS */
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .partner-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .partner-card:hover {
+      border-color: rgba(255,179,0,0.4);
+      background: var(--surface2);
+      box-shadow: 0 0 16px rgba(255,179,0,0.08);
+      transform: translateX(4px);
+    }
+
+    .partner-name {
+      font-family: var(--font-char);
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .partner-desc {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .partner-tag {
+      font-family: var(--font-badge);
+      font-size: 10px;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      align-self: flex-start;
+      border: 1px solid rgba(255,179,0,0.3);
+      padding: 4px 8px;
+      border-radius: 2px;
+    }
+
+    /* SOCIAL */
+    .social-section {
+      text-align: center;
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 80px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      font-family: var(--font-badge);
+      font-size: 12px;
+      color: var(--text);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      box-shadow: 0 0 12px rgba(255,179,0,0.2);
+    }
+
+    .footer-text {
+      font-family: var(--font-badge);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 32px;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .partners-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-logo">BSCH.VAULT</div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1 class="hero-title">BSCH.VAULT</h1>
+      <p class="hero-subtitle">Visual Consultant | AI Content Creative Development & Video Production</p>
+      <p class="hero-desc">13 years in video production. Mastering AI-generated content with cinematic precision. From concept to final frame — we control every detail.</p>
+      <a href="#services" class="cta-button">Explore Services</a>
+    </section>
+
+    <!-- SOCIAL & CONTACT -->
+    <section class="social-section" id="contact">
+      <h2 class="section-title">CONNECT</h2>
+      <div class="social-links">
+        <a href="https://instagram.com/bsch.vault" target="_blank" class="social-link">Instagram</a>
+        <a href="https://youtube.com/@bschvault" target="_blank" class="social-link">YouTube</a>
+        <a href="https://github.com/bsch2012" target="_blank" class="social-link">GitHub</a>
+        <a href="https://linkedin.com/in/baskoschnyder" target="_blank" class="social-link">LinkedIn</a>
+        <a href="mailto:basko@bsch.vault" class="social-link">Email</a>
+      </div>
+      <p class="footer-text">© 2026 BSCH.VAULT. All rights reserved.</p>
+    </section>
+
+    <!-- CREATIVE PARTNERS -->
+    <section class="section" id="partners">
+      <h2 class="section-title">CREATIVE PARTNERS</h2>
+      <p style="text-align: center; font-family: var(--font-body); font-size: 14px; color: var(--muted); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Tools & platforms we partner with for optimal creative workflow. Direct access with exclusive benefits.</p>
+      <div class="partners-grid">
+        <a href="https://invideo.io" target="_blank" class="partner-card">
+          <div class="partner-name">InVideo</div>
+          <div class="partner-desc">AI video generation & editing. Professional quality, fast turnaround.</div>
+          <span class="partner-tag">Recommended</span>
+        </a>
+        <a href="https://openart.ai/home?utm_source=tolt&utm_medium=affiliate&utm_campaign=affiliate-tolt--acq-web&ref=bsch" target="_blank" class="partner-card">
+          <div class="partner-name">Open Art</div>
+          <div class="partner-desc">AI image generation & community. Explore creative possibilities.</div>
+          <span class="partner-tag">Recommended</span>
+        </a>
+        <a href="https://refer.flora.ai/baskoro-schnyder" target="_blank" class="partner-card">
+          <div class="partner-name">Flora Fauna</div>
+          <div class="partner-desc">AI-powered creative tools. Streamline your workflow.</div>
+          <span class="partner-tag">Recommended</span>
+        </a>
+        <a href="https://hedra.link/baskoro-schnyder" target="_blank" class="partner-card">
+          <div class="partner-name">Hedra</div>
+          <div class="partner-desc">AI video creation & animation. Bring ideas to life.</div>
+          <span class="partner-tag">Recommended</span>
+        </a>
+        <a href="https://youart.ai/?fpr=ubiexs" target="_blank" class="partner-card">
+          <div class="partner-name">YouArt</div>
+          <div class="partner-desc">Creative collaboration platform. Connect with creators.</div>
+          <span class="partner-tag">Recommended</span>
+        </a>
+        <a href="https://www.smartgentech.site" target="_blank" class="partner-card">
+          <div class="partner-name">SmartGen Tech</div>
+          <div class="partner-desc">Your app store. Technology solutions for creators.</div>
+          <span class="partner-tag">Your App</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <h2 class="section-title">SERVICES</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🎬</div>
+          <h3 class="service-name">Visual Consultant</h3>
+          <p class="service-desc">Strategic creative direction for video projects. From pre-production planning to post-production optimization.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🤖</div>
+          <h3 class="service-name">AI Content Creative Development</h3>
+          <p class="service-desc">Prompt engineering & AI generation workflows. Consistent character design, cinematic video, ultra-realistic images.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📹</div>
+          <h3 class="service-name">Video Production</h3>
+          <p class="service-desc">Full-cycle video production with AI integration. Commercial reels, content series, visual storytelling.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BSCH.VAULT BUNDLE -->
+    <section class="section" id="bundle">
+      <div style="text-align: center; padding: 40px; background: var(--surface); border: 1px solid var(--border);">
+        <p style="font-family: var(--font-badge); font-size: 12px; color: var(--amber); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Prompt Library</p>
+        <h3 style="font-family: var(--font-char); font-size: 28px; color: #fff; margin-bottom: 12px; letter-spacing: 1px;">BSCH.VAULT Prompt Bundle</h3>
+        <p style="font-family: var(--font-body); font-size: 14px; color: var(--muted); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">Kling 3.0 • Midjourney + Nanobana • Identity Kit • Cinema Studio Framework</p>
+        <a href="#" class="cta-button">Get Bundle - Rp 150.000</a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
